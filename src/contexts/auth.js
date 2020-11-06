@@ -28,7 +28,9 @@ const AuthProvider = (props) => {
   const savedToken = localStorage.getItem("user-token");
   const decodedToken = savedToken ? jwt.decode(savedToken) : {};
   const initialState =
-    decodedToken.exp < Date.now() ? { user: decodedToken } : { user: null };
+    decodedToken.exp * 1000 > Date.now()
+      ? { user: decodedToken }
+      : { user: null };
 
   const [state, dispatch] = useReducer(reducer, initialState);
 

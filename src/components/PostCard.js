@@ -1,10 +1,14 @@
-import React, { useReducer } from "react";
+import React, { useContext } from "react";
 import { Card, Image, Button, Icon, Label } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 import moment from "moment";
 
-const PostCard = ({
-  post: { username, createdAt, body, likeCount, commentCount },
-}) => {
+import LikeButton from "./LikeButton";
+import { AuthContext } from "../contexts/auth";
+
+const PostCard = ({ post }) => {
+  const { user } = useContext(AuthContext);
+  const { id, username, createdAt, body, commentCount } = post;
   return (
     <Card className="post-card">
       <Card.Content>
@@ -14,26 +18,26 @@ const PostCard = ({
           src="https://react.semantic-ui.com/images/avatar/large/steve.jpg"
         />
         <Card.Header>{username}</Card.Header>
-        <Card.Meta>{moment(createdAt).fromNow(true)}</Card.Meta>
+        <Card.Meta as={Link} to={`/posts/${id}`}>
+          {moment(createdAt).fromNow(true)}
+        </Card.Meta>
         <Card.Description>{body}</Card.Description>
       </Card.Content>
       <Card.Content extra>
+        <LikeButton user={user} post={post} />
         <Button as="div" labelPosition="right">
-          <Button icon>
-            <Icon name="heart" />
-          </Button>
-          <Label as="a" basic pointing="left">
-            {likeCount}
-          </Label>
-        </Button>
-        <Button as="div" labelPosition="right">
-          <Button icon>
+          <Button as={Link} to={`/posts/${id}`} icon basic>
             <Icon name="comments" />
           </Button>
           <Label as="a" basic pointing="left">
             {commentCount}
           </Label>
         </Button>
+        {user && user.username === username && (
+          <Button icon style={{ margin: 0, float: "right" }}>
+            <Icon name="trash" />
+          </Button>
+        )}
       </Card.Content>
     </Card>
   );
