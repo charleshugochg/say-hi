@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer } from "react";
 import { Card, Image, Button, Icon, Label } from "semantic-ui-react";
 import moment from "moment";
 
