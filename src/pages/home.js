@@ -12,6 +12,9 @@ const Home = () => {
   return (
     <Grid stackable columns={3}>
       <Grid.Row>
+        <h1 className="page-header">Recent Posts</h1>
+      </Grid.Row>
+      <Grid.Row>
         {loading
           ? "Loading..."
           : posts &&

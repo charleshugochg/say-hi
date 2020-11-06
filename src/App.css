@@ -1,3 +1,15 @@
 .post-card {
   margin: 0 auto 1rem auto !important;
 }
+
+.page-header {
+  display: block;
+  margin: auto;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.form-container {
+  max-width: 400px;
+  margin: auto;
+}
