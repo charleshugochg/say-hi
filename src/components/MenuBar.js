@@ -13,26 +13,35 @@ const MenuBar = () => {
   const menuBar = user ? (
     <Menu pointing secondary size="massive">
       <Menu.Item
+        color="teal"
         name={user.username}
         active={state === "home"}
         as={Link}
         to="/"
       />
       <Menu.Menu position="right">
-        <Menu.Item name="logout" onClick={logout} />
+        <Menu.Item color="teal" name="logout" onClick={logout} />
       </Menu.Menu>
     </Menu>
   ) : (
     <Menu pointing secondary size="massive">
-      <Menu.Item name="home" active={state === "home"} as={Link} to="/" />
+      <Menu.Item
+        color="teal"
+        name="home"
+        active={state === "home"}
+        as={Link}
+        to="/"
+      />
       <Menu.Menu position="right">
         <Menu.Item
+          color="teal"
           name="login"
           active={state === "login"}
           as={Link}
           to="/login"
         />
         <Menu.Item
+          color="teal"
           name="register"
           active={state === "register"}
           as={Link}

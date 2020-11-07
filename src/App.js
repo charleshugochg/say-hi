@@ -8,6 +8,7 @@ import "./App.css";
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Register from "./pages/register";
+import SinglePost from "./pages/singlepost";
 
 import { AuthProvider } from "./contexts/auth";
 
@@ -24,6 +25,7 @@ function App() {
             <Route exact path="/" component={Home} />
             <AuthRoute exact path="/login" component={Login} />
             <AuthRoute exact path="/register" component={Register} />
+            <Route exact path="/posts/:id" component={SinglePost} />
           </Switch>
         </Container>
       </Router>

@@ -43,7 +43,7 @@ const PostForm = () => {
             onChange={onChange}
             value={values.body}
           />
-          <Form.Button>Submit</Form.Button>
+          <Form.Button color="teal">Submit</Form.Button>
         </Form.Field>
       </Form>
       {Object.keys(errors).length !== 0 && (
