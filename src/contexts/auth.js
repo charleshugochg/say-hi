@@ -24,13 +24,18 @@ function reducer(state, action) {
   }
 }
 
-const AuthProvider = (props) => {
+const getSavedUser = () => {
   const savedToken = localStorage.getItem("user-token");
   const decodedToken = savedToken ? jwt.decode(savedToken) : {};
-  const initialState =
-    decodedToken.exp * 1000 > Date.now()
-      ? { user: decodedToken }
-      : { user: null };
+  const user = decodedToken.exp * 1000 > Date.now() ? decodedToken : null;
+  if (savedToken && !user) localStorage.removeItem("user-token");
+  return user;
+};
+
+const AuthProvider = (props) => {
+  const initialState = {
+    user: getSavedUser(),
+  };
 
   const [state, dispatch] = useReducer(reducer, initialState);
 

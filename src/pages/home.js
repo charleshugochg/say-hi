@@ -26,16 +26,18 @@ const Home = () => {
             <PostForm />
           </Grid.Column>
         )}
-        <Transition.Group>
-          {loading
-            ? "Loading..."
-            : posts &&
+        {loading ? (
+          "Loading..."
+        ) : (
+          <Transition.Group>
+            {posts &&
               posts.map((post) => (
                 <Grid.Column key={post.id}>
                   <PostCard post={post} />
                 </Grid.Column>
               ))}
-        </Transition.Group>
+          </Transition.Group>
+        )}
       </Grid.Row>
     </Grid>
   );

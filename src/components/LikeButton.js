@@ -8,6 +8,9 @@ const LikeButton = ({ user, post: { id, likeCount, likes } }) => {
     variables: {
       postId: id,
     },
+    onError: (err) => {
+      console.error(err.graphQLErrors[0]);
+    },
   });
   const [unlikePost] = useMutation(UNLIKE_POST_MUTATION, {
     variables: {
@@ -19,7 +22,7 @@ const LikeButton = ({ user, post: { id, likeCount, likes } }) => {
   });
   const likeButton = user ? (
     likes.find((like) => like.username === user.username) ? (
-      <Button icon onClick={unlikePost}>
+      <Button color="teal" icon onClick={unlikePost}>
         <Icon name="heart" />
       </Button>
     ) : (
