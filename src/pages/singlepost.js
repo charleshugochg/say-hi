@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import {
   Grid,
@@ -21,6 +21,7 @@ const SinglePost = () => {
   const { id } = useParams();
   const history = useHistory();
   const { user } = useContext(AuthContext);
+  const commentInputRef = useRef(null);
   const { loading, data } = useQuery(GET_POST_QUERY, {
     variables: {
       postId: id,
@@ -42,6 +43,7 @@ const SinglePost = () => {
       },
       update: () => {
         setComment("");
+        commentInputRef.current.blur();
       },
     }
   );
@@ -109,6 +111,7 @@ const SinglePost = () => {
                       placeholder="Comment ..."
                       value={comment}
                       onChange={(event) => setComment(event.target.value)}
+                      ref={commentInputRef}
                     />
                     <button
                       type="submit"
