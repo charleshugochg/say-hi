@@ -10,7 +10,7 @@ import { setContext } from "@apollo/client/link/context";
 import App from "./App";
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:4000",
+  uri: "https://limitless-river-69549.herokuapp.com/",
 });
 
 const authLink = setContext((_, { headers }) => {
